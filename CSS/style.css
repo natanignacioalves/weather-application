@@ -55,25 +55,25 @@ body{
 
 /*CLIMA*/
 
-#wheather-data{
+#weather-data{
     border-top: 1px solid #fff;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     text-align: center;
 }
 
-#wheather-data h2 {
+#weather-data h2 {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 0.6rem;
 }
 
-#wheather-data h2 i {
+#weather-data h2 i {
     font-size: 1rem;
 }
 
-#wheather-data span {
+#weather-data span {
     margin: 0.6rem;
 }
 
@@ -88,6 +88,12 @@ body{
     margin: .6rem 0;
 }
 
+#description {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  
+
 #details-container {
     display: flex;
     justify-content: center;
@@ -99,3 +105,18 @@ body{
     margin: 0.6rem;
     padding: 0.6rem;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
