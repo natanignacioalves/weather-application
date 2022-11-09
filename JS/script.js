@@ -15,6 +15,31 @@ const windElement = document.querySelector("#wind span");
 const weatherContainer = document.querySelector("#weather-data");
 
 
+const errorMessageContainer = document.querySelector("#error-message");
+const loader = document.querySelector("#loader");
+
+const suggestionContainer = document.querySelector("#suggestions");
+const suggestionButtons = document.querySelectorAll("#suggestions button");
+
+//carregamento
+
+const toggleLoader = () => {
+    loader.classList.toggle("hide");
+  };
+  
+  const getWeatherData = async (city) => {
+    toggleLoader();
+  
+    const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
+  
+    const res = await fetch(apiWeatherURL);
+    const data = await res.json();
+  
+    toggleLoader();
+  
+    return data;
+  };
+  
 //Funções
 
 const getwhatherData = async(city) => {  //async-assíncrona - executa tarefa em segundo plano
@@ -27,8 +52,27 @@ const getwhatherData = async(city) => {  //async-assíncrona - executa tarefa em
     return data;
 }  
 
-const showWeatherData = async (city) => {
+// Tratamento de erro
+const showErrorMessage = () => {  //Mostra mensagem
+    errorMessageContainer.classList.remove("hide"); 
+  };
+  
+  const hideInformation = () => { //esconde mensagem
+    errorMessageContainer.classList.add("hide");
+    weatherContainer.classList.add("hide");
+  
+    suggestionContainer.classList.add("hide");
+  };
+
+const showWeatherData = async (city) => {  //------
+    hideInformation();
+
     const data = await getwhatherData(city);
+
+    if (data.cod === "404") {
+        showErrorMessage();
+        return;
+      }
 
     cityElement.innerText = data.name; // innerText 
     tempElement.innerText = parseInt(data.main.temp);
@@ -54,7 +98,21 @@ searchBtn.addEventListener("click", (e) => {
     showWeatherData(city);
   });
 
-  city.addEventListener("keyup", (e) => {
+  cityInput.addEventListener("keyup", (e) => {
     
-  })
+    if (e.code === "Enter") {
+        const city = e.target.value;
+        
+        showWeatherData(city); 
+    }
+  });
   
+  // Sugestões
+suggestionButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const city = btn.getAttribute("id");
+      
+       
+      showWeatherData(city);
+    });
+  });
