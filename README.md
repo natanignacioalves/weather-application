@@ -5,7 +5,7 @@
 <h2>Descrição</h2>
 
 <p>Ferramenta para conferir o clima de qualquer cidade do mundo em tempo real, desenvolvida em JavaScript, HTML e CSS, consumindo a API 
-<a href="https://openweathermap.org/api">OpenWeather </a>
+<a href="https://openweathermap.org/api">OpenWeatherMap </a>
 </p>
 <p>Projeto desenvolvido junto com <a href="">Matheus Battisti - Hora de Codar</a></p>
 
